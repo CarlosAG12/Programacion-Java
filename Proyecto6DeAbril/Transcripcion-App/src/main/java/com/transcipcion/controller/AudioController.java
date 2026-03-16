@@ -10,15 +10,12 @@ public class AudioController {
 
     @PostMapping("/transcribir")
     public ResponseEntity<String> transcribirAudio(@RequestParam("audio") MultipartFile audio) {
-
-        if (audio.isEmpty()) {
+        
+        if (audio == null || audio.isEmpty()) {
             return ResponseEntity.badRequest().body("No se recibió ningún archivo");
         }
 
-        String nombreArchivo = audio.getOriginalFilename();
-        long tamano = audio.getSize();
-
-        String respuesta = "Archivo recibido: " + nombreArchivo + " | Tamaño: " + tamano + " bytes";
+        String respuesta = "Transcripción del audio: [Aquí iría la transcripción real del audio]" + audio;
 
         return ResponseEntity.ok(respuesta);
     }
